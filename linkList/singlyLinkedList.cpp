@@ -4,85 +4,70 @@
 
 using namespace std;
 
-class Node
-{
-    public:
-        int data;
-        Node *next;
-
-        Node( int value ) : data( value ), next( nullptr ) {}
+class Node {
+public:
+    int data;
+    Node *next;
+    Node( int value ) : data( value ), next( nullptr ) {}
 };
 
-class SinglyLinkedList
-{
-    private:
-        Node *head;
+class SinglyLinkedList {
+Node *head;
 
-    public:
-        SinglyLinkedList() : head( nullptr ) {}
+public:
+    SinglyLinkedList() : head( nullptr ) {}
 
-        void insertAtBeginning( int );
-        void insertAtEnd( int );
-        void insertAtPos( int , int );
+    void insertAtBeginning( int );
+    void insertAtEnd( int );
+    void insertAtPos( int , int );
 
-        void deleteFromBeginning();
-        void deleteFromEnd();
-        void deleteFromPos( int );
-        void deleteAnElement( int );
+    void deleteFromBeginning();
+    void deleteFromEnd();
+    void deleteFromPos( int );
+    void deleteAnElement( int );
 
-        void displayList();
-
-
-
+    void displayList();
 };
 
-void SinglyLinkedList::insertAtBeginning( int data )
-{
+void SinglyLinkedList::insertAtBeginning( int data ) {
     Node *newNode = new Node( data );
     newNode -> next = head;
     head = newNode;
 }
 
-void SinglyLinkedList::insertAtEnd( int data )
-{
+void SinglyLinkedList::insertAtEnd( int data ) {
     Node *newNode = new Node( data );
-    if( head == nullptr )
-    {
+    if( head == nullptr ) {
         head = newNode;
     }
+
     Node *last = head;
-    while( last -> next != nullptr )
-    {
+    while( last -> next != nullptr ) {
         last = last -> next;
     }
 
     last -> next = newNode;
 }
 
-void SinglyLinkedList::insertAtPos( int pos, int data )
-{
-    if( pos < 0 )
-    {
+void SinglyLinkedList::insertAtPos( int pos, int data ) {
+    if( pos < 0 ) {
         cout << "Position cann't be negative." << endl;
         return;
     }
 
     Node *newNode = new Node( data );
-    if( pos == 0 )
-    {
+    if( pos == 0 ) {
         newNode -> next = head;
         head = newNode;
         return;
     }
 
     Node *temp = head;
-    for( int i = 0; temp != nullptr && i < pos - 1; i++ )
-    {
+    for( int i = 0; temp != nullptr && i < pos - 1; i++ ) {
         temp = temp -> next;
     }
 
-    if( temp == nullptr )
-    {
+    if( temp == nullptr ) {
         cout << "The given position is greater than the size of the list." << endl;
         delete newNode;
         return;
@@ -93,10 +78,8 @@ void SinglyLinkedList::insertAtPos( int pos, int data )
 
 }
 
-void SinglyLinkedList::deleteFromBeginning()
-{
-    if( head == nullptr )
-    {
+void SinglyLinkedList::deleteFromBeginning() {
+    if( head == nullptr ) {
         return;
     }
     Node *temp = head;
@@ -104,18 +87,15 @@ void SinglyLinkedList::deleteFromBeginning()
     delete temp;
 }
 
-void SinglyLinkedList::deleteFromEnd()
-{
+void SinglyLinkedList::deleteFromEnd() {
     Node *temp = head;
-    if( temp -> next == nullptr )
-    {
+    if( temp -> next == nullptr ) {
         delete temp;
         head -> next = nullptr;
         return;
     }
 
-    while( temp -> next -> next != nullptr )
-    {
+    while( temp -> next -> next != nullptr ) {
         temp = temp -> next;
     }
 
@@ -125,19 +105,16 @@ void SinglyLinkedList::deleteFromEnd()
 
 void SinglyLinkedList::deleteFromPos( int pos )
 {
-    if( pos < 0 )
-    {
+    if( pos < 0 ) {
         cout << "Position cann't be negative." << endl;
         return;
     }
 
-    if( head == nullptr )
-    {
+    if( head == nullptr ) {
         cout << "The list is empty." << endl;
     }
 
-    if( pos == 0 )
-    {
+    if( pos == 0 ) {
         Node *temp = head;
         head = head -> next;
         delete temp;
@@ -146,13 +123,11 @@ void SinglyLinkedList::deleteFromPos( int pos )
 
     Node *temp = head;
     Node *prev = nullptr;
-    for( int i = 0; temp != nullptr && i < pos; i++ )
-    {
+    for( int i = 0; temp != nullptr && i < pos; i++ ) {
         prev = temp;
         temp = temp -> next;
     }
-    if( temp == nullptr )
-    {
+    if( temp == nullptr ) {
         cout << "The given position is greater than the size of the list." << endl;
         return;
     }
@@ -161,25 +136,21 @@ void SinglyLinkedList::deleteFromPos( int pos )
     delete temp;
 }
 
-void SinglyLinkedList::deleteAnElement( int value )
-{
+void SinglyLinkedList::deleteAnElement( int value ) {
     Node *temp = head;
     Node *prev = nullptr;
 
-    if( temp != nullptr && temp -> data == value )
-    {
+    if( temp != nullptr && temp -> data == value ) {
         head = temp -> next;
         delete temp;
         return;
     }
 
-    while( temp != nullptr && temp -> data != value )
-    {
+    while( temp != nullptr && temp -> data != value ) {
         prev = temp;
         temp = temp -> next;
     }
-    if( temp == nullptr )
-    {
+    if( temp == nullptr ) {
         return;
     }
 
@@ -189,24 +160,20 @@ void SinglyLinkedList::deleteAnElement( int value )
 
 }
 
-void SinglyLinkedList::displayList()
-{
+void SinglyLinkedList::displayList() {
     Node *node = head;
 
-    if( head == nullptr )
-    {
+    if( head == nullptr ) {
         cout << "The list is empty." << endl;
     }
 
-    while( node != nullptr )
-    {
+    while( node != nullptr ) {
         cout << node -> data << "  ";
         node = node -> next;
     }
 }
 
-int main()
-{
+int main() {
     SinglyLinkedList list;
 
     list.insertAtBeginning( 3 );
