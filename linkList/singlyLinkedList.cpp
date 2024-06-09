@@ -103,8 +103,7 @@ void SinglyLinkedList::deleteFromEnd() {
     temp -> next = nullptr;
 }
 
-void SinglyLinkedList::deleteFromPos( int pos )
-{
+void SinglyLinkedList::deleteFromPos( int pos ) {
     if( pos < 0 ) {
         cout << "Position cann't be negative." << endl;
         return;
